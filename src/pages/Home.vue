@@ -1,6 +1,8 @@
 <script >
-import HeaderJumboTron from '';
-import PageHomeMain from './PageHomeMain.vue';
+import HeaderJumboTron from '../components/header/HeaderJumboTron.vue';
+
+
+
 
 
 export default  {
@@ -19,8 +21,7 @@ export default  {
 </script>
 
 <template>
-    <PageHomeJumboTron></PageHomeJumboTron>
-    <PageHomeMain></PageHomeMain>
+    <HeaderJumboTron></HeaderJumboTron>
 </template>
 
 <style lang="scss">
