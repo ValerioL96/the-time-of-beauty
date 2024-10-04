@@ -25,7 +25,7 @@ export default {
         startSlideshow() {
         this.interval = setInterval(() => {
             this.nextImage();
-        }, 5000); // Cambia immagine ogni 5 secondi
+        }, 4000); // Cambia immagine ogni 5 secondi
         },
         nextImage() {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
@@ -59,7 +59,6 @@ export default {
     text-align: center;
     padding: 0;
     margin: 0;
-    width: 100vw;
     height: 100vh;
     position: relative;
     overflow: hidden;

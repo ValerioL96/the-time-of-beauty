@@ -4,5 +4,10 @@
     box-sizing: border-box;
 }
 
-
+main {
+    flex: 1;
+    padding: 2rem;
+    /* Sfumatura da #019DB4 a #D99254 a #CAC6BA */
+    background: linear-gradient(180deg, #019DB4, #D99254, #CAC6BA);
+}
 
