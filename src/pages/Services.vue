@@ -131,21 +131,6 @@ export default {
   line-height: 1.4;
 }
 
-/* Button */
-.card-body .btn {
-  background: linear-gradient(90deg, #019DB4, #D99254); /* Sfumatura sul pulsante */
-  color: white;
-  padding: 0.6rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 50px; /* Pulsanti arrotondati per un look moderno */
-  text-transform: uppercase;
-  transition: background 0.3s ease-in-out;
-}
-
-.card-body .btn:hover {
-  background: linear-gradient(90deg, #D99254, #CAC6BA); /* Sfumatura più calda su hover */
-}
-
 /* Media Query per Mobile */
 @media (max-width: 768px) {
   .card {
