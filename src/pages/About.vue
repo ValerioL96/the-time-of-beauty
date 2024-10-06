@@ -15,8 +15,8 @@ export default  {
 </script>
 
 <template>
-    <div class="container my-5">
-        <div class="text-center mb-4 py-5">
+    <div class="container">
+        <div class="text-center mb-4">
             <h1 class="display-4 font-weight-bold"><Strong>The TIME of Beauty</Strong></h1>
             <h3>Benvenuti nel nostro salone di barbiere, dove la tradizione incontra l'innovazione!</h3>
             <p class="lead">
@@ -38,15 +38,16 @@ export default  {
 <style lang="scss" scoped>
 .container{ 
     color: #FFFFFF;
+    padding: 6rem;
 }
 
 hr{
-    border: none; /* Rimuove il bordo predefinito */
-    height: 3px; /* Altezza della linea */
-    background-color: #888888; /* Colore grigio medio */
-    margin: 30px 0; /* Spaziatura verticale attorno all'hr */
-    border-radius: 5px; /* Angoli arrotondati */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra leggera */
+    border: none; 
+    height: 3px; 
+    background-color: #888888; 
+    margin: 30px 0; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
 </style>
