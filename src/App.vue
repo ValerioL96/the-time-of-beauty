@@ -23,20 +23,19 @@ export default  {
 </script>
 
 <template>
-  
-  <header>
-    <AppHeader></AppHeader>
-  </header>
+  <body>
+    <header>
+      <AppHeader></AppHeader>
+    </header>
 
-  <main>
-    <router-view></router-view>
-  </main>
+    <main>
+      <router-view></router-view>
+    </main>
 
-  <footer>
-    <AppFooter></AppFooter>
-  </footer>
-  
-
+    <footer>
+      <AppFooter></AppFooter>
+    </footer>
+  </body>
 </template>
 
 <style lang="scss" scoped>
