@@ -4,80 +4,96 @@ import axios from 'axios';
 export default {
     data() {
         return {
-        customer_name: '',
-        customer_phone: '',
-        customer_email: '',
-        appointment_time: '',
-        selected_service: '',
-        services: [],
-        showToast: false, 
+            customer_name: '',
+            customer_phone: '',
+            customer_email: '',
+            appointment_time: '',
+            selected_service: '',
+            services: [],
+            showToast: false,
+            dropdownVisible: false, // Track dropdown visibility
+            isMobile: false, // Check for mobile
         };
     },
     mounted() {
-        this.fetchServices(); 
-        document.addEventListener('click', this.handleOutsideClick); 
+        this.fetchServices();
+        this.checkIfMobile(); // Check if the device is mobile
+        window.addEventListener('resize', this.checkIfMobile); // Check on resize
+        document.addEventListener('click', this.handleOutsideClick);
     },
     beforeDestroy() {
-        document.removeEventListener('click', this.handleOutsideClick); 
+        document.removeEventListener('click', this.handleOutsideClick);
+        window.removeEventListener('resize', this.checkIfMobile); // Clean up
     },
     methods: {
         openOffcanvas(event) {
-        event.preventDefault();
-        const offcanvasElement = document.getElementById('offcanvasScrolling');
-        if (offcanvasElement) {
-            const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
-            offcanvas.show();
-        } else {
-            console.error('Offcanvas element not found');
-        }
+            event.preventDefault();
+            const offcanvasElement = document.getElementById('offcanvasScrolling');
+            if (offcanvasElement) {
+                const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+                offcanvas.show();
+            } else {
+                console.error('Offcanvas element not found');
+            }
         },
         openBookingToast() {
-        this.showToast = true; 
+            this.showToast = true;
         },
         async fetchServices() {
-        try {
-            const response = await axios.get('http://127.0.0.1:8000/api/services');
-            this.services = response.data; 
-        } catch (error) {
-            console.error('Error fetching services:', error);
-        }
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/services');
+                this.services = response.data;
+            } catch (error) {
+                console.error('Error fetching services:', error);
+            }
         },
         async submitBooking() {
-        const appointmentData = {
-            customer_name: this.customer_name,
-            customer_phone: this.customer_phone,
-            customer_email: this.customer_email,
-            appointment_time: this.appointment_time,
-            service_id: this.selected_service,
-            status: 'pending',
-        };
+            const appointmentData = {
+                customer_name: this.customer_name,
+                customer_phone: this.customer_phone,
+                customer_email: this.customer_email,
+                appointment_time: this.appointment_time,
+                service_id: this.selected_service,
+                status: 'pending',
+            };
 
-        try {
-            await axios.post('http://127.0.0.1:8000/api/appointments', appointmentData);
-            alert('Prenotazione effettuata con successo!'); 
-            this.resetForm();
-            this.showToast = false; 
-        } catch (error) {
-            console.error('Error submitting appointment:', error);
-            alert('Errore nell\'invio della prenotazione.');
-        }
+            try {
+                await axios.post('http://127.0.0.1:8000/api/appointments', appointmentData);
+                alert('Prenotazione effettuata con successo!');
+                this.resetForm();
+                this.showToast = false;
+            } catch (error) {
+                console.error('Error submitting appointment:', error);
+                alert('Errore nell\'invio della prenotazione.');
+            }
         },
         resetForm() {
-        this.customer_name = '';
-        this.customer_phone = '';
-        this.customer_email = '';
-        this.appointment_time = '';
-        this.selected_service = '';
+            this.customer_name = '';
+            this.customer_phone = '';
+            this.customer_email = '';
+            this.appointment_time = '';
+            this.selected_service = '';
         },
         handleOutsideClick(event) {
-        const toastElement = this.$refs.bookingToast; 
-        if (this.showToast && toastElement && !toastElement.$el.contains(event.target)) {
-            this.showToast = false;
-        }
+            const toastElement = this.$refs.bookingToast;
+            if (this.showToast && toastElement && !toastElement.$el.contains(event.target)) {
+                this.showToast = false;
+            }
+            // Close dropdown if clicked outside
+            if (this.dropdownVisible && !event.target.closest('.dropdown')) {
+                this.dropdownVisible = false;
+            }
+        },
+        toggleDropdown() {
+            this.dropdownVisible = !this.dropdownVisible; // Toggle dropdown
+        },
+        checkIfMobile() {
+            this.isMobile = window.innerWidth <= 768; // Set isMobile based on window width
         },
     },
 };
 </script>
+
 
 <template>
     <div class="header">
@@ -95,7 +111,19 @@ export default {
             <a href="#" @click="openOffcanvas" class="links">Contatti</a>
             <a href="#" @click="openBookingToast" class="links">Prenota</a>
         </div>
-        </div>
+
+        <!-- Dropdown for mobile -->
+        <div class="dropdown" v-if="isMobile">
+                <button class="dropdown-toggle" @click="toggleDropdown"><i class="fa-solid fa-bars"></i></button>
+                <div v-if="dropdownVisible" class="dropdown-menu">
+                    <router-link :to="{ name: 'home' }" class="dropdown-item">Home</router-link>
+                    <router-link :to="{ name: 'about' }" class="dropdown-item">Chi siamo</router-link>
+                    <router-link :to="{ name: 'services' }" class="dropdown-item">Servizi</router-link>
+                    <a href="#" @click="openOffcanvas" class="dropdown-item">Contatti</a>
+                    <a href="#" @click="openBookingToast" class="dropdown-item">Prenota</a>
+                </div>
+            </div>
+    </div>
     
         <!-- Offcanvas per i contatti -->
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -243,6 +271,42 @@ export default {
     color: #138085; 
 }
 
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: #138085;
+    color: white;
+}
+
 .jumbotron {
     position: relative;
     width: 100vw;
@@ -342,9 +406,16 @@ export default {
 /* Media Query per Mobile */
 @media (max-width: 768px) {
     .header-nav {
-        flex-direction: column; 
-        align-items: center; 
+        display: none;
     }
+
+    .logo-container {
+    margin-right: 10px;
+}
+    
+    .brand-name {
+    font-size: 18px; 
+}
 }
 
 </style>
