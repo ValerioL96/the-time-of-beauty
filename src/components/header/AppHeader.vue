@@ -81,6 +81,13 @@ export default {
 
 <template>
     <div class="header">
+
+        <!-- Logo con Nome -->
+        <div class="logo-container">
+            <img src="../../assets/logo/Barberia_logo.png" alt="logo" class="logo">
+            <span class="brand-name">The TIME of Beauty</span>
+        </div>
+
         <div class="header-nav">
             <router-link :to="{ name: 'home' }" class="links">Home</router-link>
             <router-link :to="{ name: 'about' }" class="links">Chi siamo</router-link>
@@ -198,6 +205,24 @@ export default {
     background-color: rgba(0, 0, 0, 0.5); 
     color: white; 
     padding: 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.logo {
+    height: 60px; // Altezza del logo
+    width: auto;
+}
+
+.brand-name {
+    font-size: 24px; // Dimensione del testo per il nome
+    font-weight: bold;
+    margin-left: 10px; // Spazio tra il logo e il testo
+    color: #ffffff; // Colore del testo
 }
 
 .header-nav {
@@ -323,4 +348,5 @@ export default {
 }
 
 </style>
+
 
