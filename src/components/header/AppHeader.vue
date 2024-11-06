@@ -87,10 +87,23 @@ export default {
         toggleDropdown() {
             this.dropdownVisible = !this.dropdownVisible; 
         },
-        checkIfMobile() {
+        closeDropdown() {
+            this.dropdownVisible = false;  // Chiusura del dropdown
+        },
+        handleOutsideClick(event) {
+            const toastElement = this.$refs.bookingToast;
+            if (this.showToast && toastElement && !toastElement.$el.contains(event.target)) {
+                this.showToast = false;
+            }
+            
+            if (this.dropdownVisible && !event.target.closest('.dropdown')) {
+                this.dropdownVisible = false;
+            }
+    },
+    checkIfMobile() {
             this.isMobile = window.innerWidth <= 768; 
         },
-    },
+    }    
 };
 </script>
 
@@ -114,15 +127,15 @@ export default {
 
         <!-- Dropdown per mobile -->
         <div class="dropdown" v-if="isMobile">
-                <button class="dropdown-toggle" @click="toggleDropdown"><i class="fa-solid fa-bars"></i></button>
-                <div v-if="dropdownVisible" class="dropdown-menu">
-                    <router-link :to="{ name: 'home' }" class="dropdown-item">Home</router-link>
-                    <router-link :to="{ name: 'about' }" class="dropdown-item">Chi siamo</router-link>
-                    <router-link :to="{ name: 'services' }" class="dropdown-item">Servizi</router-link>
-                    <a href="#" @click="openOffcanvas" class="dropdown-item">Contatti</a>
-                    <a href="#" @click="openBookingToast" class="dropdown-item">Prenota</a>
-                </div>
+            <button class="dropdown-toggle" @click="toggleDropdown"><i class="fa-solid fa-bars"></i></button>
+            <div v-if="dropdownVisible" class="dropdown-menu">
+                <router-link :to="{ name: 'home' }" class="dropdown-item" @click="closeDropdown">Home</router-link>
+                <router-link :to="{ name: 'about' }" class="dropdown-item" @click="closeDropdown">Chi siamo</router-link>
+                <router-link :to="{ name: 'services' }" class="dropdown-item" @click="closeDropdown">Servizi</router-link>
+                <a href="#" @click="openOffcanvas" class="dropdown-item">Contatti</a>
+                <a href="#" @click="openBookingToast" class="dropdown-item">Prenota</a>
             </div>
+        </div>
     </div>
     
         <!-- Offcanvas per i contatti -->
