@@ -50,4 +50,29 @@ hr{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
+/* Media Query per mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 8rem 2rem;
+    }
+
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem; 
+    }
+
+    p.lead {
+        font-size: 1rem;
+        line-height: 1.4; 
+    }
+
+    hr {
+        margin: 20px 0;
+        height: 2px;
+    }
+}
+
 </style>
