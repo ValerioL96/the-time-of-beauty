@@ -60,7 +60,7 @@ export default {
     }
 
 .footer-nav {
-  margin-bottom: 15px; 
+    margin-bottom: 15px; 
 }
 
 .footer-link {
@@ -96,5 +96,41 @@ export default {
 .footer-bottom {
     margin-top: 15px;
     font-size: 14px;
+}
+
+/* Media Query per mobile */
+@media (max-width: 768px) {
+    .footer {
+        padding: 15px; 
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-nav {
+        margin-bottom: 10px; 
+    }
+
+    .footer-link {
+        font-size: 13px; 
+        margin: 0 10px;
+        padding: 8px;
+    }
+
+    .social-media {
+        margin: 8px 0; 
+    }
+
+    .social-icon {
+        font-size: 20px;
+        margin: 0 10px; 
+    }
+
+    .footer-bottom {
+        font-size: 12px;
+        margin-top: 10px;
+    }
 }
 </style>
