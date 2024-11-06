@@ -129,7 +129,7 @@ export default {
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Informazioni di Contatto</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
         </div>
     
         <div class="offcanvas-body">
@@ -328,11 +328,21 @@ export default {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
+/* Pulsante di chiusura del Offcanvas */
 .btn-close {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     background: transparent;
     border: none;
-    color: white; 
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s; 
 }
+
 .offcanvas-body {
     color: #fff; 
     font-size: 1rem; 
@@ -371,14 +381,14 @@ export default {
 
 /* Toast Prenotazione */
 .booking-toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(145deg, #019DB4, #D99254); 
-  color: white;
-  padding: 15px;
-  border-radius: 5px;
-  z-index: 9999;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, #019DB4, #D99254); 
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 9999;
 }
 
 /* Pulsante di chiusura del toast */
@@ -402,28 +412,28 @@ export default {
 
 /* Modulo di prenotazione */
 .booking-form {
-  background: linear-gradient(145deg, #019DB4, #D99254); 
-  padding: 20px; 
-  border-radius: 5px;
+    background: linear-gradient(145deg, #019DB4, #D99254); 
+    padding: 20px; 
+    border-radius: 5px;
 }
 
 .booking-form .form-label {
-  color: white; 
+    color: white; 
 }
 
 .booking-form .form-control,
 .booking-form .form-select {
-  background-color: rgba(255, 255, 255, 0.8); 
-  color: black; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: black; 
 }
 
 .booking-form .btn-success {
-  background-color: #138085; 
-  border: none; 
+    background-color: #138085; 
+    border: none; 
 }
 
 .booking-form .btn-success:hover {
-  background-color: #0f706f; 
+    background-color: #0f706f; 
 }
 
 /* Media Query per Mobile */
@@ -438,6 +448,24 @@ export default {
     
     .brand-name {
     font-size: 18px; 
+}
+
+/* Pulsante di chiusura del Offcanvas */
+.btn-close {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s; 
+}
+.btn-close:hover {
+    color: #138085; 
 }
 }
 
