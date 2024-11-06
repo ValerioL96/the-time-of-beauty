@@ -7,16 +7,24 @@ export default {
             services: [],
             currentPage: 1,
             totalPages: 1,
-            isLoading: false 
+            isLoading: false,
+            isBooking: false, // Flag per mostrare il modulo di prenotazione
+            selectedService: null, // Servizio selezionato per la prenotazione
+            formData: {
+                name: '',
+                email: '',
+                phone: '',
+                service_id: null,
+                date: '',
+                time: ''
+            }
         }
     },
     methods: {
         getService(page = 1) {
-            this.isLoading = true; // Avvia caricamento
+            this.isLoading = true;
             axios.get('http://127.0.0.1:8000/api/services', {
-                params: {
-                    page: page
-                }
+                params: { page: page }
             })
                 .then((response) => {
                     this.services.push(...response.data);
@@ -26,7 +34,26 @@ export default {
                     this.$router.push({ name: "404" });
                 })
                 .finally(() => {
-                    this.isLoading = false; // Fine caricamento
+                    this.isLoading = false;
+                });
+        },
+        openBooking(service) {
+            this.selectedService = service;
+            this.isBooking = true;
+            this.formData.service_id = service.id; // Impostiamo l'id del servizio nella form
+        },
+        closeBooking() {
+            this.isBooking = false;
+            this.selectedService = null;
+        },
+        bookService() {
+            axios.post('http://127.0.0.1:8000/api/appointments', this.formData)
+                .then((response) => {
+                    alert('Prenotazione effettuata con successo!');
+                    this.closeBooking(); // Chiudi il modulo di prenotazione
+                })
+                .catch((error) => {
+                    alert('Errore durante la prenotazione. Riprova.');
                 });
         }
     },
@@ -38,15 +65,14 @@ export default {
 
 <template>
 <div class="container">
-
     <!-- Spinner durante il caricamento -->
     <div v-if="isLoading" class="loading-spinner">
         <div class="spinner"></div>
     </div>
-    
+
     <div v-else class="row d-flex justify-content-center flex-wrap">
         <!-- Cards servizi -->
-        <div class="card mb-4 mx-2" v-for="service in services" :key="service.id" style="width: 22rem; height: auto;">
+        <div class="card mb-4 mx-2" v-for="service in services" :key="service.id" style="width: 22rem; height: auto;" @click="openBooking(service)">
             <div class="card-body text-center">
                 <h5 class="card-title">{{ service.name }}</h5>
                 <p class="card-text">&euro; {{ service.price }}</p>
@@ -55,11 +81,41 @@ export default {
             </div>
         </div>
     </div>
+
+    <!-- Modulo di prenotazione -->
+    <div v-if="isBooking" class="booking-modal">
+        <div class="modal-content">
+            <span class="close" @click="closeBooking">&times;</span>
+            <h2>Prenotazione per: {{ selectedService.name }}</h2>
+            <form @submit.prevent="bookService" class="booking-form">
+                <div class="form-group pb-2">
+                    <label for="name" class="form-label">Nome:</label>
+                    <input type="text" id="name" v-model="formData.name" class="form-control" required>
+                </div>
+                <div class="form-group pb-2">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" v-model="formData.email" class="form-control" required>
+                </div>
+                <div class="form-group pb-2">
+                    <label for="phone" class="form-label">Telefono:</label>
+                    <input type="text" id="phone" v-model="formData.phone" class="form-control" required>
+                </div>
+                <div class="form-group pb-2">
+                    <label for="date" class="form-label">Data:</label>
+                    <input type="date" id="date" v-model="formData.date" class="form-control" required>
+                </div>
+                <div class="form-group  pb-5">
+                    <label for="time" class="form-label">Orario:</label>
+                    <input type="time" id="time" v-model="formData.time" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Prenota</button>
+            </form>
+        </div>
+    </div>
 </div>
 </template>
 
 <style lang="scss" scoped>
-
 .container {
   padding: 8rem 0;
   display: flex;
@@ -157,12 +213,63 @@ export default {
   line-height: 1.4;
 }
 
-/* Media Query per schermi piccoli */
-@media (max-width: 768px) {
-  .card {
+/* Modulo di prenotazione */
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-bottom: 1.5rem;
-  }
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #019DB4, #D99254); 
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    width: 400px;
+    text-align: center;
+    position: relative;
+    max-width: 90%;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.booking-form {
+    padding: 20px; 
+    border-radius: 5px;
+}
+
+.booking-form .form-label {
+    color: white; 
+}
+
+.booking-form .form-control,
+.booking-form .form-select {
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: black; 
+}
+
+.booking-form .btn-success {
+    background-color: #138085; 
+    border: none; 
+}
+
+.booking-form .btn-success:hover {
+    background-color: #0f706f; 
 }
 </style>
+
 
