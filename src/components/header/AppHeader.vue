@@ -287,8 +287,8 @@ export default {
 
 .dropdown-menu {
     position: absolute;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5); 
+    right: 0;
+    background: linear-gradient(145deg, #019DB4, #D99254); 
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
@@ -299,6 +299,7 @@ export default {
 .dropdown-item {
     padding: 10px;
     color: white;
+    text-align: center;
     text-decoration: none;
 }
 
