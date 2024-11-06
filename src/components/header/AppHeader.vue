@@ -79,16 +79,16 @@ export default {
             if (this.showToast && toastElement && !toastElement.$el.contains(event.target)) {
                 this.showToast = false;
             }
-            // Close dropdown if clicked outside
+            
             if (this.dropdownVisible && !event.target.closest('.dropdown')) {
                 this.dropdownVisible = false;
             }
         },
         toggleDropdown() {
-            this.dropdownVisible = !this.dropdownVisible; // Toggle dropdown
+            this.dropdownVisible = !this.dropdownVisible; 
         },
         checkIfMobile() {
-            this.isMobile = window.innerWidth <= 768; // Set isMobile based on window width
+            this.isMobile = window.innerWidth <= 768; 
         },
     },
 };
@@ -112,7 +112,7 @@ export default {
             <a href="#" @click="openBookingToast" class="links">Prenota</a>
         </div>
 
-        <!-- Dropdown for mobile -->
+        <!-- Dropdown per mobile -->
         <div class="dropdown" v-if="isMobile">
                 <button class="dropdown-toggle" @click="toggleDropdown"><i class="fa-solid fa-bars"></i></button>
                 <div v-if="dropdownVisible" class="dropdown-menu">
@@ -188,6 +188,9 @@ export default {
         v-if="showToast" 
         class="booking-toast"
         >
+        <!-- Pulsante di chiusura -->
+        <button @click="showToast = false" class="close-button">X</button>
+
         <form @submit.prevent="submitBooking" class="booking-form">
             <div class="mb-3">
             <label for="customer_name" class="form-label">Nome:</label>
@@ -377,6 +380,25 @@ export default {
   border-radius: 5px;
   z-index: 9999;
 }
+
+/* Pulsante di chiusura del toast */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-button:hover {
+    color: #138085; 
+}
+
 
 /* Modulo di prenotazione */
 .booking-form {
