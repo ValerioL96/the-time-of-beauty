@@ -13,7 +13,7 @@ export default {
             ],
             currentIndex: 0,
             interval: null,
-            title: 'The TIME of Beauty',
+            title: '/src/assets/logo/Barberia_logo.png',
             titleVisible: true
         };
     },
@@ -63,12 +63,13 @@ export default {
         </div>
 
         <!-- Titolo -->
-        <h1 
+        <img 
+        v-if="titleVisible"
+            :src="title" 
+            alt= ''  
             class="jumbotron-title" 
-            v-if="titleVisible"
-        >
-            {{ title }}
-        </h1>
+            >
+        </img>
     </div>
 </template>
 
@@ -110,11 +111,11 @@ export default {
 // Titolo
 .jumbotron-title {
     position: absolute; 
-    top: 50%; 
+    top: 60%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
-    font-size: 4rem; 
-    font-weight: bold;
+    width: 50%; 
+    max-width: 450px;
     color: #fff;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); 
     letter-spacing: 2px; 
@@ -142,7 +143,7 @@ export default {
 /* Media Query per schermi più piccoli */
 @media (max-width: 768px) {
     .jumbotron-title {
-        font-size: 3rem;
+        width: 100%
     }
 }
 
