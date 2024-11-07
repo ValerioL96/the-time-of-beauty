@@ -133,7 +133,10 @@ export default {
                 <router-link :to="{ name: 'about' }" class="dropdown-item" @click="closeDropdown">Chi siamo</router-link>
                 <router-link :to="{ name: 'services' }" class="dropdown-item" @click="closeDropdown">Servizi</router-link>
                 <a href="#" @click="openOffcanvas" class="dropdown-item">Contatti</a>
-                <a href="#" @click="openBookingToast" class="dropdown-item">Prenota</a>
+                <div @click="closeDropdown">
+                    <a href="#" @click="openBookingToast" class="dropdown-item">Prenota</a>
+                </div>
+                
             </div>
         </div>
     </div>
