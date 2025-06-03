@@ -5,9 +5,15 @@ import HeaderJumboTron from '../components/header/HeaderJumboTron.vue';
 
 
 
+
+
+
+
+
 export default  {
     components:{
         HeaderJumboTron,
+ 
     },
 
     data(){
@@ -22,6 +28,7 @@ export default  {
 
 <template>
     <HeaderJumboTron></HeaderJumboTron>
+   
 </template>
 
 <style lang="scss">

@@ -8,11 +8,97 @@ export default {
             customer_phone: '',
             customer_email: '',
             appointment_time: '',
-            selected_service: '',
-            services: [],
+            selected_service: null,
+           
+            services : [
+  {
+    id: 1,
+    name: 'Capelli',
+    description: 'Servizio di taglio capelli base per un look fresco e rinnovato. Perfetto per chi desidera mantenere uno stile semplice e curato.',
+    price: 10.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/capelli',
+    calendlyUrl1:''
+
+  },
+  {
+    id: 2,
+    name: 'Capelli + Shampoo',
+    description: 'Taglio capelli con lavaggio e shampoo inclusi. Questo servizio offre una pulizia profonda e un massaggio rilassante del cuoio capelluto, per un’esperienza rinvigorente.',
+    price: 15.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/capelli-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 3,
+    name: 'Capelli + Shampoo + Barba',
+    description: 'Un pacchetto completo che include taglio di capelli, lavaggio e shampoo, e cura della barba. Perfetto per chi desidera apparire impeccabile dalla testa ai piedi.',
+    price: 18.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/capelli-shampoo-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 4,
+    name: 'Capelli Bimbo',
+    description: 'Taglio di capelli per bambini, realizzato in un ambiente amichevole e divertente. Assicuriamo un’esperienza piacevole per i più piccoli, senza stress.',
+    price: 7.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/capelli-shampoo-barba-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 5,
+    name: 'Modellatura Barba',
+    description: 'Servizio di modellatura e rifinitura della barba per un look elegante e curato. Utilizziamo tecniche specializzate per enfatizzare la tua forma del viso.',
+    price: 5.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/capelli-bimbo-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 6,
+    name: 'Tintura Barba',
+    description: 'Trattamento di tintura per la barba, ideale per coprire i capelli grigi o semplicemente per cambiare look. Utilizziamo prodotti di alta qualità per un risultato naturale e duraturo.',
+    price: 10.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/modellatura-barba-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 7,
+    name: 'Stiratura',
+    description: 'Servizio di stiratura dei capelli per ottenere un look liscio e setoso. Perfetto per chi desidera domare i capelli crespi e avere un aspetto ordinato.',
+    price: 20.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/tintura-barba-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 8,
+    name: 'Permanente',
+    description: 'Trattamento permanente per i capelli che dona volume e onde morbide. Ideale per chi desidera un cambiamento duraturo e uno stile unico.',
+    price: 25.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/stiratura-clone',
+    calendlyUrl1:''
+  },
+  {
+    id: 9,
+    name: 'Lozione Curativa',
+    description: 'Applicazione di lozione curativa per i capelli, progettata per nutrire e riparare i capelli danneggiati. Perfetta per migliorare la salute e l’aspetto dei tuoi capelli.',
+    price: 5.00,
+    duration: 30,
+    calendlyUrl:'https://calendly.com/the-time-of-beauty/permanente-clone',
+    calendlyUrl1:''
+  },
+],
             showToast: false,
             dropdownVisible: false, // Track dropdown visibility
             isMobile: false, // Check for mobile
+            showToast: true, // Controlla se il toast è visibile
+        activeContent: null // Controlla quale contenuto mostrare
         };
     },
     mounted() {
@@ -26,6 +112,19 @@ export default {
         window.removeEventListener('resize', this.checkIfMobile); // Clean up
     },
     methods: {
+
+    selectService(service) {
+        this.selected_service = service;
+    },
+    resetContent() {
+        this.activeContent = null;
+        this.selected_service = null;
+    },
+
+        showContent(content) {
+        this.activeContent = content;
+    },
+
         openOffcanvas(event) {
             event.preventDefault();
             const offcanvasElement = document.getElementById('offcanvasScrolling');
@@ -113,7 +212,8 @@ export default {
 
         <!-- Logo con Nome -->
         <div class="logo-container">
-            <img src="../../assets/logo/Barberia_logo.png" alt="logo" class="logo">
+            <!-- <img src="../../assets/logo/Barberia_logo.png" alt="logo" class="logo"> -->
+            <img src="../../assets/img/IMG-20241212-WA0014.png" alt="logo" class="logo">
             <span class="brand-name">The TIME of Beauty</span>
         </div>
 
@@ -122,7 +222,9 @@ export default {
             <router-link :to="{ name: 'about' }" class="links">Chi siamo</router-link>
             <router-link :to="{ name: 'services' }" class="links">Servizi</router-link>
             <a href="#" @click="openOffcanvas" class="links">Contatti</a>
-            <a href="#" @click="openBookingToast" class="links">Prenota</a>
+            <router-link :to="{ name: 'orari' }" class="links">Orari</router-link>
+
+            <!-- <a href="src/components/header/HomeHours.vue" @click="openBookingToast" class="links">Orari</a> -->
         </div>
 
         <!-- Dropdown per mobile -->
@@ -133,9 +235,10 @@ export default {
                 <router-link :to="{ name: 'about' }" class="dropdown-item" @click="closeDropdown">Chi siamo</router-link>
                 <router-link :to="{ name: 'services' }" class="dropdown-item" @click="closeDropdown">Servizi</router-link>
                 <a href="#" @click="openOffcanvas" class="dropdown-item">Contatti</a>
-                <div @click="closeDropdown">
-                    <a href="#" @click="openBookingToast" class="dropdown-item">Prenota</a>
-                </div>
+                <router-link :to="{ name: 'orari' }" class="dropdown-item" @click="closeDropdown">Orari</router-link>
+                <!-- <div @click="closeDropdown">
+                    <a href="./header/HomeHours.vue" @click="openBookingToast" class="dropdown-item">Orari</a>
+                </div> -->
                 
             </div>
         </div>
@@ -195,7 +298,7 @@ export default {
         </div>
     
         <!-- Toast per la prenotazione -->
-    <b-toast 
+    <!-- <b-toast 
         id="booking-toast" 
         title="Prenotazione" 
         variant="info" 
@@ -203,9 +306,9 @@ export default {
         ref="bookingToast" 
         v-if="showToast" 
         class="booking-toast"
-        >
+        > -->
         <!-- Pulsante di chiusura -->
-        <button @click="showToast = false" class="close-button">X</button>
+        <!-- <button @click="showToast = false" class="close-button">X</button>
 
         <form @submit.prevent="submitBooking" class="booking-form">
             <div class="mb-3">
@@ -235,7 +338,126 @@ export default {
             </div>
             <button type="submit" class="btn btn-success">Invia Prenotazione</button>
         </form>
-    </b-toast>
+    </b-toast> -->
+
+
+    <!-- Toast per la prenotazione -->
+<!-- <b-toast 
+    id="booking-toast" 
+    title="Prenotazione" 
+    variant="info" 
+    no-auto-hide 
+    ref="bookingToast" 
+    v-if="showToast" 
+    class="booking-toast"
+> -->
+    <!-- Pulsante di chiusura -->
+    <!-- <button @click="showToast = false" class="close-button">X</button> -->
+
+    <!-- Calendly Widget -->
+    <!-- <div class="calendly-embed">
+        <iframe
+            src="https://calendly.com/the-time-of-beauty/prenotazione"
+            width="100%"
+            height="450px"
+            frameborder="0"
+            scrolling="no"
+        ></iframe>
+    </div>
+</b-toast> -->
+
+<!-- <b-toast 
+    id="booking-toast" 
+    title="Prenotazione" 
+    variant="info" 
+    no-auto-hide 
+    ref="bookingToast" 
+    v-if="showToast" 
+    class="booking-toast"
+> -->
+    <!-- Pulsante di chiusura -->
+    <!-- <button @click="showToast = false" class="close-button">X</button> -->
+
+    <!-- Contenuto principale -->
+    <!-- <div class="m-3" v-if="!activeContent">
+        <h4 class="mb-4">Seleziona il barbiere</h4>
+        <div class="images-container">
+            <h6 class="text-center mb-2">Valerio Lembo</h6>
+            <img 
+                src="/src/assets/logo/Barberia_logo.png" 
+                alt="Immagine 1" 
+                class="clickable-image" 
+                @click="showContent('content1')" 
+            />
+            <h6 class="text-center mb-2">Lembo Valerio</h6>
+            <img 
+                src="/src/assets/img/Barberia_logo.png" 
+                alt="Immagine 2" 
+                class="clickable-image" 
+                @click="showContent('content2')" 
+            />
+        </div>
+    </div> -->
+
+    <!-- Lista Servizi -->
+    <!-- <div v-if="activeContent === 'content1'" class="dynamic-content">
+        <h4>Seleziona un Servizio</h4>
+        <ul>
+            <li v-for="service in services" :key="service.id">
+                <button @click="selectService(service)">
+                    {{ service.name }}
+                </button>
+            </li>
+            <button @click="resetContent">Torna indietro</button>
+        </ul>
+       
+    </div> -->
+
+    <!-- Calendly Widget -->
+    <!-- <div v-if="selected_service" class="dynamic-content">
+        <h4>Prenota: {{ selected_service.name }}</h4>
+        <div class="calendly-embed">
+            <iframe
+                :src= "selected_service.calendlyUrl"
+                width="100%"
+                height="450px"
+                frameborder="0"
+                scrolling="no"
+            ></iframe>
+        </div>
+        <button @click="resetContent">Torna indietro</button>
+    </div> -->
+
+        <!-- Lista Servizi -->
+        <!-- <div v-if="activeContent === 'content2'" class="dynamic-content">
+        <h4>Seleziona un Servizio</h4>
+        <ul>
+            <li v-for="service in services" :key="service.id">
+                <button @click="selectService(service)">
+                    {{ service.name }}
+                </button>
+            </li>
+        </ul>
+        <button @click="resetContent">Torna indietro</button>
+    </div> -->
+
+    <!-- Calendly Widget -->
+    <!-- <div v-if="selected_service" class="dynamic-content">
+        <h4>Prenota: {{ selected_service.name }}</h4>
+        <div class="calendly-embed">
+            <iframe
+                :src="selected_service.calendlyUrl1"
+                width="100%"
+                height="450px"
+                frameborder="0"
+                scrolling="no"
+            ></iframe>
+        </div>
+        <button @click="resetContent">Torna indietro</button>
+    </div>
+</b-toast> -->
+
+
 </template>
 
 
@@ -484,6 +706,63 @@ export default {
     color: #138085; 
 }
 }
+
+.calendly-embed {
+    margin-top: 50px;
+    height: 500px;
+    overflow: hidden;
+}
+
+.calendly-embed> iframe{
+  border-radius: 5%;
+}
+
+
+
+
+.booking-toast .clickable-image {
+    
+    width: 200px;
+    height: 200px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+  
+}
+
+.booking-toast .clickable-image:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+}
+
+.booking-toast .dynamic-content {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.booking-toast ul {
+    list-style: none;
+    padding: 0;
+}
+
+.booking-toast ul li {
+    margin: 10px 0;
+}
+
+.booking-toast ul li button {
+    background-color: #138085;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+}
+
+.booking-toast ul li button:hover {
+    background-color: #0f706f;
+}
+
+
 
 </style>
 

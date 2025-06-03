@@ -33,7 +33,7 @@ export default {
             </a>
             </div>
             <div class="footer-bottom">
-            <p>&copy; 2024 The Time Of Beauty. Tutti i diritti riservati.</p>
+            <p>&copy; 2024 The Time Of Beauty. <router-link :to="{ name: 'privacypolicy' }" class="links"><strong>Tutti i diritti riservati.</strong></router-link></p>
             </div>
         </div>
     </footer>
@@ -96,6 +96,10 @@ export default {
 .footer-bottom {
     margin-top: 15px;
     font-size: 14px;
+}
+
+.links{
+    color: #138085;
 }
 
 /* Media Query per mobile */

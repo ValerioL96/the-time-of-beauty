@@ -1,7 +1,15 @@
 <script>
+import HomeHours from './HomeHours.vue';
+
 export default {
+    components:{
+            HomeHours,
+ 
+    },
     data() {
+       
         return {
+            
             images: [
                 '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.53 (3).jpeg',
                 '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.54 (1).jpeg',
@@ -13,7 +21,10 @@ export default {
             ],
             currentIndex: 0,
             interval: null,
-            title: '/src/assets/logo/Barberia_logo.png',
+            // title: '/src/assets/logo/Barberia_logo.png',
+            title: 'src/assets/img/IMG-20241212-WA0014.png',
+            
+            
             titleVisible: true
         };
     },
@@ -71,9 +82,11 @@ export default {
             >
         </img>
     </div>
+
+   <HomeHours></HomeHours>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 
 .jumbotron {
     text-align: center;
@@ -111,10 +124,12 @@ export default {
 // Titolo
 .jumbotron-title {
     position: absolute; 
-    top: 60%; 
+    top: 55%;
+    // top: 60%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
-    width: 50%; 
+    width: 30%; 
+    // width: 50%; 
     max-width: 450px;
     color: #fff;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); 
@@ -145,6 +160,8 @@ export default {
     .jumbotron-title {
         width: 100%
     }
+
+    
 }
 
 </style>
