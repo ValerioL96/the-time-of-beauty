@@ -22,7 +22,7 @@ export default {
             currentIndex: 0,
             interval: null,
             // title: '/src/assets/logo/Barberia_logo.png',
-            title: 'src/assets/img/IMG-20241212-WA0014.png',
+            title: '/assets/img/IMG-20241212-WA0014.png',
             
             
             titleVisible: true
