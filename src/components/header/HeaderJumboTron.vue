@@ -11,13 +11,13 @@ export default {
         return {
             
             images: [
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.53 (3).jpeg',
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.54 (1).jpeg',
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.54 (3).jpeg',
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.54 (4).jpeg',
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.55 (1).jpeg',
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.55 (3).jpeg',
-                '/src/assets/img/WhatsApp Image 2024-09-10 at 21.35.55 (4).jpeg'
+                '/src/assets/img/image_1.jpeg',
+                '/src/assets/img/image_2.jpeg',
+                '/src/assets/img/image_3.jpeg',
+                '/src/assets/img/image_4.jpeg',
+                '/src/assets/img/image_5.jpeg',
+                '/src/assets/img/image_6.jpeg',
+                '/src/assets/img/image_7.jpeg'
             ],
             currentIndex: 0,
             interval: null,
