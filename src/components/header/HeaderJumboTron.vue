@@ -11,13 +11,13 @@ export default {
         return {
             
             images: [
-                '/src/assets/img/image_1.jpeg',
-                '/src/assets/img/image_2.jpeg',
-                '/src/assets/img/image_3.jpeg',
-                '/src/assets/img/image_4.jpeg',
-                '/src/assets/img/image_5.jpeg',
-                '/src/assets/img/image_6.jpeg',
-                '/src/assets/img/image_7.jpeg'
+                '/assets/img/image_1.jpeg',
+                '/assets/img/image_2.jpeg',
+                '/assets/img/image_3.jpeg',
+                '/assets/img/image_4.jpeg',
+                '/assets/img/image_5.jpeg',
+                '/assets/img/image_6.jpeg',
+                '/assets/img/image_7.jpeg'
             ],
             currentIndex: 0,
             interval: null,
