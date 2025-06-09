@@ -128,6 +128,7 @@ export default {
         max-width: 100%;
         margin: 0 1rem 2rem;
         padding-top: 2rem;
+        padding-bottom: 2rem;
 
         h1{
             font-size: 20px;
