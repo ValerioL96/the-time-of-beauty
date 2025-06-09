@@ -126,7 +126,7 @@ export default {
 
     .orari {
         max-width: 100%;
-        margin: 0 1rem 2rem;
+        margin: 0 1rem 2rem 3rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
 
