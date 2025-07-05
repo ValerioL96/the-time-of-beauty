@@ -145,7 +145,7 @@ export default {
         <div class="card mb-4 mx-2" v-for="service in services" :key="service.id" style="width: 22rem; height: auto;" @click="openBooking(service)">
             <div class="card-body text-center">
                 <h5 class="card-title">{{ service.name }}</h5>
-                <p class="card-text">&euro; {{ service.price }}</p>
+                <!-- <p class="card-text">&euro; {{ service.price }}</p> -->
                 <p class="card-text">{{ service.duration }} min</p>
                 <p class="card-text">{{ service.description }}</p>
             </div>
