@@ -20,6 +20,17 @@ export default {
      <div class="container">
         <div class="titolo-orario">
             <hr>
+        <h1>Chiusura Estiva</h1>
+        <hr>
+        </div>
+       
+        <div class="orari">
+        <ul>
+            <li><span>Da martedì 14 Agosto a sabato 30 Agosto</span> Chiusi per Ferie</li>
+        </ul>
+    </div>
+        <div class="titolo-orario">
+            <hr>
         <h1>Orari</h1>
         <hr>
         </div>
