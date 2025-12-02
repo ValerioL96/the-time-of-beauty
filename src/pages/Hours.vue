@@ -28,12 +28,12 @@ export default {
         <ul>
             <li><span>Domenica 21 Dicembre: </span> 9:00 - 14:00</li>
             <li><span>Lunedì 22 Dicembre: </span> 9:00 - 13:00 / 15:30 - 20:00</li>
-            <li><span>Mercoledì 24 Dicembre: </span> 9:00 - 16:00 </li>
+            <li><span>Mercoledì 24 Dicembre: </span> 8:00 - 16:00 </li>
             <li><span>Giovedì 25 Dicembre: </span> CHIUSO </li>
             <li><span>Venerdì 26 Dicembre: </span> CHIUSO </li>
             <li><span>Domenica 28 Dicembre: </span> 9:00 - 14:00</li>
             <li><span>Lunedì 29 Dicembre: </span> 9:00 - 13:00 / 15:30 - 20:00</li>
-            <li><span>Mercoledì 31 Dicembre: </span> 9:00 - 15:30 </li>
+            <li><span>Mercoledì 31 Dicembre: </span> 8:00 - 15:30 </li>
             <li><span>Giovedì 1 Gennaio: </span> CHIUSO </li>
             <li><span>Martedì 6 Gennaio: </span> CHIUSO </li>
         </ul>
