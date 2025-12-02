@@ -20,13 +20,22 @@ export default {
      <div class="container">
          <div class="titolo-orario">
             <hr>
-        <h1>Chiusura Estiva</h1>
+        <h1>Orario Natalizio </h1>
         <hr>
         </div>
        
         <div class="orari">
         <ul>
-            <li><span>Da martedì 14 Agosto a sabato 30 Agosto</span> Chiusi per Ferie</li>
+            <li><span>Domenica 21 Dicembre: </span> 9:00 - 14:00</li>
+            <li><span>Lunedì 22 Dicembre: </span> 9:00 - 13:00 / 15:30 - 20:00</li>
+            <li><span>Mercoledì 24 Dicembre: </span> 9:00 - 16:00 </li>
+            <li><span>Giovedì 25 Dicembre: </span> CHIUSO </li>
+            <li><span>Venerdì 26 Dicembre: </span> CHIUSO </li>
+            <li><span>Domenica 28 Dicembre: </span> 9:00 - 14:00</li>
+            <li><span>Lunedì 29 Dicembre: </span> 9:00 - 13:00 / 15:30 - 20:00</li>
+            <li><span>Mercoledì 31 Dicembre: </span> 9:00 - 15:30 </li>
+            <li><span>Giovedì 1 Gennaio: </span> CHIUSO </li>
+            <li><span>Martedì 6 Gennaio: </span> CHIUSO </li>
         </ul>
     </div>
         <div class="titolo-orario">
