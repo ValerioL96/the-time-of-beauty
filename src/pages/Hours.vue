@@ -18,9 +18,9 @@ export default {
 
     <!-- Orari -->
      <div class="container">
-         <div class="titolo-orario">
+       <!--   <div class="titolo-orario">
             <hr>
-        <h1>Orario Natalizio </h1>
+       <h1>Orario Natalizio </h1>
         <hr>
         </div>
        
@@ -37,7 +37,7 @@ export default {
             <li><span>Giovedì 1 Gennaio: </span> CHIUSO </li>
             <li><span>Martedì 6 Gennaio: </span> CHIUSO </li>
         </ul>
-    </div>
+    </div> -->
         <div class="titolo-orario">
             <hr>
         <h1>Orari</h1>
