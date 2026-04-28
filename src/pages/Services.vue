@@ -5,13 +5,13 @@ export default {
     data() {
         return {
            services : [
-  {
-    id: 1,
-    name: 'Capelli',
-    description: 'Servizio di taglio capelli base per un look fresco e rinnovato. Perfetto per chi desidera mantenere uno stile semplice e curato.',
-    duration: 30,
-    calendlyUrl:'https://meet.brevo.com/thetimeofbeauty/capelli'
-  },
+  //{
+  //  id: 1,
+   // name: 'Capelli',
+   // description: 'Servizio di taglio capelli base per un look fresco e rinnovato. Perfetto per chi desidera mantenere uno stile semplice e curato.',
+    //duration: 30,
+    //calendlyUrl:'https://meet.brevo.com/thetimeofbeauty/capelli'
+ // },
   {
     id: 2,
     name: 'Capelli + Shampoo',
